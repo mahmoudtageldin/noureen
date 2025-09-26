@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> لفي بينا يا دنيا  </title>
+    <style>
+        /* أنماط عامة */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', 'Segoe UI', Tahoma, sans-serif;
+        }
+
+        body {
+            background-image: url('WhatsApp Image 2025-09-27 at 12.26.31 AM.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            min-height: 150vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            z-index: -1;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            max-width: 90%;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        /* ديكورات القلوب */
+        .heart-decoration {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: #ff6b6b;
+            transform: rotate(45deg);
+            opacity: 0.7;
+            z-index: 0;
+        }
+
+        .heart-decoration::before,
+        .heart-decoration::after {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: #ff6b6b;
+            border-radius: 50%;
+        }
+
+        .heart-decoration::before {
+            top: -15px;
+            left: 0;
+        }
+
+        .heart-decoration::after {
+            top: 0;
+            left: -15px;
+        }
+
+        .heart-1 {
+            top: 10%;
+            left: 10%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .heart-2 {
+            top: 70%;
+            right: 15%;
+            animation: float 7s ease-in-out infinite 1s;
+        }
+
+        .heart-3 {
+            bottom: 20%;
+            left: 20%;
+            animation: float 5s ease-in-out infinite 0.5s;
+        }
+
+        .hearts-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .heart-bg {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background-color: rgba(255, 107, 107, 0.2);
+            transform: rotate(45deg);
+            border-radius: 10px;
+        }
+
+        .heart-bg::before,
+        .heart-bg::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background-color: rgba(255, 107, 107, 0.2);
+            border-radius: 50%;
+        }
+
+        .heart-bg::before {
+            top: -30px;
+            left: 0;
+        }
+
+        .heart-bg::after {
+            top: 0;
+            left: -30px;
+        }
+
+        .hb-1 {
+            top: 5%;
+            left: 5%;
+            animation: pulse 8s infinite;
+        }
+
+        .hb-2 {
+            top: 15%;
+            right: 10%;
+            animation: pulse 10s infinite 1s;
+        }
+
+        .hb-3 {
+            bottom: 10%;
+            left: 15%;
+            animation: pulse 9s infinite 2s;
+        }
+
+        .hb-4 {
+            bottom: 20%;
+            right: 5%;
+            animation: pulse 7s infinite 1.5s;
+        }
+
+        .hb-5 {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(45deg);
+            animation: pulse 12s infinite 3s;
+        }
+
+        .content-wrapper {
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            color: #c44569;
+            margin-bottom: 25px;
+            font-size: 2rem;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        /* أنماط صفحة كلمة المرور */
+        .password-container {
+            display: block;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .password-input {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid #ff9f9f;
+            border-radius: 50px;
+            font-size: 16px;
+            transition: all 0.3s;
+            background-color: #fff5f5;
+        }
+
+        .password-input:focus {
+            border-color: #c44569;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(196, 69, 105, 0.2);
+        }
+
+        .submit-btn {
+            background: linear-gradient(to right, #ff6b6b, #c44569);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(196, 69, 105, 0.3);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(196, 69, 105, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(1px);
+        }
+
+        .error-message {
+            color: #e74c3c;
+            margin-top: 15px;
+            display: none;
+            font-weight: bold;
+        }
+
+        /* أنماط صفحة التهنئة */
+        .celebration-container {
+            display: none;
+        }
+
+        .image-container {
+            position: relative;
+            width: 100%;
+            max-width: 350px;
+            margin: 20px auto;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s;
+            border-radius: 15px;
+        }
+
+        .image-container:hover .profile-img {
+            transform: scale(1.05);
+        }
+
+        .image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(196, 69, 105, 0.1), rgba(255, 107, 107, 0.2));
+            border-radius: 15px;
+        }
+
+        .message {
+            margin-top: 25px;
+            line-height: 1.8;
+            color: #333;
+            font-size: 1.2rem;
+            text-align: center;
+            background-color: #f7e7ee;
+            padding: 20px;
+            border-radius: 15px;
+            border-left: 5px solid #ff6b6b;
+        }
+
+        .message p {
+            margin-bottom: 10px;
+        }
+
+        .signature {
+            margin-top: 25px;
+            font-style: italic;
+            color: #c44569;
+        }
+
+        .heart-signature {
+            font-size: 2.5rem;
+            margin-top: 10px;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        /* تأثيرات الحركة */
+      
+      
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); }
+            20%, 40%, 60%, 80% { transform: translateX(10px); }
+        }
+
+        
+
+        /* تصميم متجاوب للشاشات المختلفة */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+                max-width: 95%;
+            }
+            
+            h1 {
+                font-size: 1.7rem;
+            }
+            
+            .message {
+                font-size: 1.1rem;
+                padding: 15px;
+            }
+            
+            .profile-img {
+                height: 250px;
+            }
+            
+            .heart-decoration {
+                width: 20px;
+                height: 20px;
+            }
+            
+            .heart-decoration::before,
+            .heart-decoration::after {
+                width: 20px;
+                height: 20px;
+            }
+            
+            .heart-decoration::before {
+                top: -10px;
+            }
+            
+            .heart-decoration::after {
+                left: -10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            
+            .container {
+                padding: 15px;
+                border-radius: 15px;
+            }
+            
+            h1 {
+                font-size: 1.5rem;
+                margin-bottom: 15px;
+            }
+            
+            .password-input, .submit-btn {
+                padding: 12px 15px;
+                font-size: 16px;
+            }
+            
+            .message {
+                font-size: 1rem;
+                padding: 12px;
+            }
+            
+            .profile-img {
+                height: 200px;
+            }
+            
+            .heart-bg {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .heart-bg::before,
+            .heart-bg::after {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .heart-bg::before {
+                top: -20px;
+            }
+            
+            .heart-bg::after {
+                left: -20px;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .container {
+                max-width: 600px;
+            }
+            
+            .profile-img {
+                height: 350px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- صفحة إدخال كلمة المرور -->
+    <div class="container password-container" id="passwordPage">
+        <div class="heart-decoration heart-1"></div>
+        <div class="heart-decoration heart-2"></div>
+        <div class="heart-decoration heart-3"></div>
+        
+        <div class="content-wrapper">
+            <h1> نعمل اي تاني طيب 😔  </h1>
+            <div class="input-group">
+                <input type="password" class="password-input" id="passwordInput" placeholder="Enter the password noureen">
+                <button class="submit-btn" id="submitBtn">Enter </button>
+            </div>
+            <p class="error-message" id="errorMessage"> error password</p>
+        </div>
+    </div>
+    
+    <!-- صفحة التهنئة -->
+    <div class="container celebration-container" id="celebrationPage">
+        
+        
+        <div class="content-wrapper">
+            <h1>😍 Guess who leveled up today ! </h1>
+            
+            <div class="image-container">
+                <img src="WhatsApp Image 2025-09-27 at 12.37.31 AM.jpeg" alt="صورة تهنئة" class="profile-img" id="main-img">
+                <div class="image-overlay"></div>
+            </div>
+            
+            <div class="message">
+                <>Still not sure what’s luckier .. this day that brought u to life, or me getting to know u ..
+
+Happiest of birthdays,
+Happy birthday to the most beautiful girl i knew 😔
+I really don't know what to say, but I really wish you kol 7aga 7elwa bgd
+يعني تحبي العربي وتطيقي النحو شوية وتخلصي من البكالوريا على خير
+w 3o2bal el 3omr klooo ya 8alyaa 😍
+<p>,Finally</p>
+01001001 00100000 01101100 01101111 01110110 01100101 00100000 01111001 01101111 01110101
+
+<p>understand this with yourself ba2a</p>
+                <p></p>
+                <p></p>
+              
+            </div>
+            
+            <div class="signature">
+                <p class="heart-signature"></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // انتظر حتى يتم تحميل الصفحة بالكامل
+        document.addEventListener('DOMContentLoaded', function() {
+            // العناصر الرئيسية
+            const passwordPage = document.getElementById('passwordPage');
+            const celebrationPage = document.getElementById('celebrationPage');
+            const passwordInput = document.getElementById('passwordInput');
+            const submitBtn = document.getElementById('submitBtn');
+            const errorMessage = document.getElementById('errorMessage');
+            
+            // كلمة المرور الصحيحة
+            const correctPassword = "2102009";
+            
+            // عند النقر على زر الدخول
+            submitBtn.addEventListener('click', function() {
+                checkPassword();
+            });
+            
+            // السماح بالدخول باستخدام زر Enter
+            passwordInput.addEventListener('keyup', function(event) {
+                if (event.key === 'Enter') {
+                    checkPassword();
+                }
+            });
+            
+            // تركيز على حقل كلمة المرور عند تحميل الصفحة
+            passwordInput.focus();
+            
+            // وظيفة التحقق من كلمة المرور
+            function checkPassword() {
+                const enteredPassword = passwordInput.value;
+                
+                if (enteredPassword === correctPassword) {
+                    // إخفاء صفحة كلمة المرور
+                    passwordPage.style.opacity = '0';
+                    
+                    // بعد تأثير الاختفاء، إظهار صفحة التهنئة
+                    setTimeout(function() {
+                        passwordPage.style.display = 'none';
+                        celebrationPage.style.display = 'block';
+                        
+                        // تأثير الظهور
+                        setTimeout(function() {
+                            celebrationPage.style.opacity = '1';
+                        }, 50);
+                        
+                        // إضافة تأثيرات احتفالية
+                        createHearts();
+                        playCelebrationSound();
+                    }, 500);
+                } else {
+                    // عرض رسالة الخطأ مع تأثير
+                    errorMessage.style.display = 'block';
+                    errorMessage.style.animation = 'shake 0.5s';
+                    
+                    // إزالة تأثير الهز بعد انتهائه
+                    setTimeout(function() {
+                        errorMessage.style.animation = '';
+                    }, 500);
+                    
+                    passwordInput.value = '';
+                    passwordInput.focus();
+                }
+            }
+            
+      
+          
+            
+            
+            // وظيفة لتشغيل صوت احتفالي (اختياري)
+            function playCelebrationSound() {
+                // يمكنك إضافة صوت هنا إذا أردت
+                // مثال: const audio = new Audio('celebration-sound.mp3');
+                // audio.play();
+                
+                // بديل: استخدام صوت من الإنترنت
+                try {
+                    const audio = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-happy-birthday-balloon-493.mp3');
+                    audio.volume = 0.3;
+                    audio.play();
+                } catch (e) {
+                    console.log('تعذر تشغيل الصوت');
+                }
+            }
+        });
+    </script>
+</body>
+</html>
